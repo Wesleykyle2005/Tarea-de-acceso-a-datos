@@ -29,12 +29,10 @@ namespace CustomerCRUD
             Customercb.DataSource = _customersRepository.GetAll().ToList();
             Customercb.DisplayMember = "CustomerId";
             Customercb.ValueMember = "Id";
-
         }
 
         private void Actualizar()
         {
-
             try
             {
                 dgvDatos.DataSource = _creditRiskRepository.GetAll();
@@ -42,8 +40,7 @@ namespace CustomerCRUD
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los datos" + Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
+            }        
         }
 
         private void AddBtn_Click(object sender, EventArgs e)

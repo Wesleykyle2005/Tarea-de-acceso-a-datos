@@ -24,13 +24,18 @@ namespace CustomerCRUD
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            Customer customer = new Customer
+            if (!String.IsNullOrEmpty(txtName.Text)
+                && !String.IsNullOrEmpty(txtLastName.Text)
+               )
             {
-                FirstName = txtName.Text,
-                LastName = txtLastName.Text,
-            };
-            _customersRepository.Insert(customer);
-            ActualizarCustomers();
+                Customer customer = new Customer
+                {
+                    FirstName = txtName.Text,
+                    LastName = txtLastName.Text,
+                };
+                _customersRepository.Insert(customer);
+                ActualizarCustomers();
+            }          
         }
 
         private void EditBtn_Click(object sender, EventArgs e)

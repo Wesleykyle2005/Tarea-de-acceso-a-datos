@@ -13,37 +13,72 @@ namespace CustomerCRUD
         private AutoLotContext _dbCustomer = new AutoLotContext();
         public IEnumerable<Customer> GetAll()
         {
-            List<Customer> customers = _dbCustomer.customers.ToList();
-            return customers;  
+            try
+            {
+                List<Customer> customers = _dbCustomer.customers.ToList();
+                return customers;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al obtener a los clientes de la base de datos: {ex.Message}");
+            }
         }
         public Customer GetValue(int id)
         {
-            Customer customer = _dbCustomer.customers.Find(id);
-            return customer;
+            try
+            {
+                Customer customer = _dbCustomer.customers.Find(id);
+                return customer;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al obtener de la base de datos: {ex.Message}");
+            }
         }                       
         public void Insert(Customer customer)
         {
-            Customer customerToAdd = new Customer
+            try
             {
-                FirstName = customer.FirstName,
-                LastName = customer.LastName,
-            };
-            _dbCustomer.Add(customerToAdd);
-            _dbCustomer.SaveChanges();
+                Customer customerToAdd = new Customer
+                {
+                    FirstName = customer.FirstName,
+                    LastName = customer.LastName,
+                };
+                _dbCustomer.Add(customerToAdd);
+                _dbCustomer.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al insertar en la base de datos: {ex.Message}");
+            }
         }
 
         public void Update(Customer customer)
         {
-            Customer customerToUpdate = GetValue(customer.Id);
-            customerToUpdate.FirstName = customer.FirstName;
-            customerToUpdate.LastName = customer.LastName;  
-            _dbCustomer.SaveChanges();
+            try
+            {
+                Customer customerToUpdate = GetValue(customer.Id);
+                customerToUpdate.FirstName = customer.FirstName;
+                customerToUpdate.LastName = customer.LastName;
+                _dbCustomer.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al actualizar el cliente de la base de datos: {ex.Message}");
+            }
         }
         public void Delete(int id)
         {
-            Customer customer = GetValue(id);
-            _dbCustomer.customers.Remove(customer);
-            _dbCustomer.SaveChanges();
+            try
+            {
+                Customer customer = GetValue(id);
+                _dbCustomer.customers.Remove(customer);
+                _dbCustomer.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al eliminar de la base de datos: {ex.Message}");
+            }
         }
     }
 }

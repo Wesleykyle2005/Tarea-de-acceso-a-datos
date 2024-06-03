@@ -50,7 +50,7 @@ namespace CustomerCRUD
             {
                 if (
                     !String.IsNullOrEmpty(txtName.Text)
-                    && !String.IsNullOrEmpty(txtLastName.Text)
+                    && !String.IsNullOrEmpty(txtLastName.Text) && !String.IsNullOrEmpty(Customercb.Text)
                    )
                 {
                     _creditRiskRepository.Insert(new CreditRisks()

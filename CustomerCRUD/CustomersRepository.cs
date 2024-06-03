@@ -57,10 +57,21 @@ namespace CustomerCRUD
         {
             try
             {
-                Customer customerToUpdate = GetValue(customer.Id);
-                customerToUpdate.FirstName = customer.FirstName;
-                customerToUpdate.LastName = customer.LastName;
-                _dbCustomer.SaveChanges();
+                // Busca el cliente a actualizar en la base de datos
+                Customer customerToUpdate = _dbCustomer.customers.Find(customer.Id);
+
+                // Verifica si el cliente existe en la base de datos
+                if (customerToUpdate != null)
+                {
+                    // Actualiza las propiedades del cliente
+                    customerToUpdate.FirstName = customer.FirstName;
+                    customerToUpdate.LastName = customer.LastName;
+                    _dbCustomer.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("El cliente no se encuentra en la base de datos.");
+                }
             }
             catch (Exception ex)
             {

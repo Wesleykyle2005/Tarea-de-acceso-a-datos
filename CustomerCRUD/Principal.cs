@@ -46,8 +46,11 @@ namespace CustomerCRUD
                    && !String.IsNullOrEmpty(txtLastName.Text)
                    )
             {
+
+                int id = (int)dgvDatos.SelectedRows[0].Cells[0].Value;
                 Customer customer = new Customer
                 {
+                    Id = id,
                     FirstName = txtName.Text,
                     LastName = txtLastName.Text,
                 };

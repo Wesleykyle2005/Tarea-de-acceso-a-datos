@@ -26,6 +26,7 @@ namespace CustomerCRUD
 
         private void MostrarClientes()
         {
+            
             Customercb.DataSource = _customersRepository.GetAll().ToList();
             Customercb.DisplayMember = "CustomerId";
             Customercb.ValueMember = "Id";

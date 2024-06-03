@@ -30,6 +30,8 @@ namespace InventoryCRUD
         private void CargarMarcas()
         {
             List<Makes> make = _makesRepository.GetAll().ToList();
+            Makescb.DataSource = null;          
+            Makescb.Items.Clear();
             Makescb.DataSource = make;
             Makescb.DisplayMember = "Name";
             Makescb.ValueMember = "Id";
